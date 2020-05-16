@@ -3,7 +3,7 @@
 #################################################
 ---
 - hosts: newserver
-  connection: local
+  #connection: local
   become: true
   vars_files:
     - vars/default.yml
@@ -67,3 +67,11 @@
         state: enabled
         policy: deny
         direction: incoming
+
+    - name: Remove useless packages from the cache
+      apt:
+        autoclean: yes
+
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes

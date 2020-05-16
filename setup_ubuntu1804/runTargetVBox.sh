@@ -47,7 +47,7 @@ function duration(){
     func_output=$($func_name)
     end_ms=$(ruby -e 'puts (Time.now.to_f * 1000).to_i')
     elapsed_ms=$((end_ms - start_ms))
-    echo "execution duration: $elapsed_ms ms"
+    silent echo "execution duration: $elapsed_ms ms"
     echo "$func_output"
 }
 

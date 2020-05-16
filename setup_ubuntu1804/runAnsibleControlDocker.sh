@@ -10,12 +10,16 @@ docker build -t $image_name .
 docker stop $contianer_name > /dev/null 2>&1
 docker rm $contianer_name > /dev/null 2>&1
 
-echo "run docker container"
+echo "restart target node"
+VBoxIP=$(source runTargetVBox.sh)
+echo "Current ip of the target machines $VBoxIP"
 
+echo "run docker container"
 # If you want have iptables access within your containers, you need to enable specific capabilities via the --cap-add=NET_ADMIN switch when running the container initially.
 docker run --cap-add=NET_ADMIN -it --rm \
     -v $(pwd):/root/playbook \
     -v $HOME/.ssh:/root/.ssh \
     -w /root/playbook \
+    -e TARGET_IP=$VBoxIP \
     --name $contianer_name \
     $image_name

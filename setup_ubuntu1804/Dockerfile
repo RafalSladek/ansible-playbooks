@@ -7,10 +7,10 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update && \
     apt-get install -y \
-    python3-pip software-properties-common sudo openssh-server iptables && \
+    python3-pip software-properties-common sudo openssh-server iptables sshpass && \
     pip3 install ansible
 
 #COPY . /root/playbook
 WORKDIR /root/playbook
 
-CMD ansible-playbook playbook.yml -i local.inventory -u root
+CMD ansible-playbook playbook.yml -vvv -i local.inventory -l $TARGET_IP
