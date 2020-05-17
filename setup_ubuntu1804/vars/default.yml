@@ -2,4 +2,4 @@
 create_user: ansible
 copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 sys_packages: ["aptitude", "sudo", "iptables", "software-properties-common"]
-user_packages: ["curl", "vim", "git", "ufw"]
+user_packages: ["curl", "vim", "git", "ufw", "htop"]

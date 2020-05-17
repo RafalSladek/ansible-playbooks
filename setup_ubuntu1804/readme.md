@@ -35,7 +35,34 @@ copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}
 sys_packages: [ 'curl', 'vim', 'git', 'ufw']
 ```
 
-### 3. Run the Playbook
+### 3. Setup your credentials or ssh keys in local.inventory
+
+```yaml
+[newserver]
+<TARGET NODE HOST>
+
+[newserver:vars]
+ansible_user=<USER>
+ansible_ssh_pass=<PASSWORD>
+ansible_python_interpreter=/usr/bin/python3
+```
+
+### 4. Run the Playbook
+
+before you need to have your target node host (or local virtual box vm)
+
+once (check the vbox ip)
+```bash
+./runTargetVBox.sh
+```
+
+via docker:
+
+```bash
+./runAnsibleControlDocker.sh
+```
+
+locally:
 
 ```command
 ansible-playbook -l [target] -i [inventory file] -u [remote user] playbook.yml
