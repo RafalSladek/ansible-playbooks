@@ -1,3 +1,4 @@
 *.retry
 .idea
 **/local.inventory
+.DS_Store
